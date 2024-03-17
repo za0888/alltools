@@ -18,8 +18,11 @@ class Order extends Model
         'status',
     ];
 
-    protected $casts=['status'=>OrderStatus::class];
 
+    protected function casts()
+    {
+        return['status'=>OrderStatus::class];
+}
 
     public function skus():BelongsToMany
     {

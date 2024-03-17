@@ -30,9 +30,14 @@ class Sku extends Model
 
     ];
 
-    protected $casts = [
-        'skuStatus' => SkuStatus::class,
-    ];
+
+
+    protected function casts()
+    {
+        return [
+            'skuStatus' => SkuStatus::class,
+        ];
+    }
 
     public function attributeOptions(): BelongsToMany
     {

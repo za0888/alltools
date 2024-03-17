@@ -20,10 +20,13 @@ class AttributeOption extends Model
         'attribute_id',
     ];
 
-    protected $casts = [
-        'units' => 'array'
-    ];
 
+    protected function casts()
+    {
+        return [
+            'units' => 'array',
+        ];
+}
     public function attribute(): BelongsTo
     {
         return $this->belongsTo(Attribute::class)

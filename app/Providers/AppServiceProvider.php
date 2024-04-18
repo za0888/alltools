@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\enums\UserStatus;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
@@ -27,11 +28,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        Model::preventLazyLoading(!$this->app->isProduction());
+//        Model::shouldBeStrict(!$this->app->isProduction());
+//        if it turns on while local dev then it should be kept in the production mode
+        Model::shouldBeStrict();
 
-        Model::shouldBeStrict(!$this->app->isProduction());
-
-//        @bloger
+//        @manager
         Blade::if('manager',
             fn() => Auth::user()?->status === UserStatus::Manager);
 

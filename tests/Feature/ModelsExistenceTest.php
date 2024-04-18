@@ -18,10 +18,10 @@ use function Pest\Laravel\assertSoftDeleted;
 //ORDER
 it('check created ORDER model existence & softDeleting', function () {
 
-    $order = Order::create(['number' => 12345678]);
+    $order = Order::create(['order_number' => 12345678]);
 
     assertDatabaseHas('orders', [
-        'number' => '12345678',
+        'order_number' => '12345678',
         'status' => OrderStatus::Processing->value
     ]);
 
@@ -68,11 +68,14 @@ it('check created Unit model existence & softDeleting', function () {
 
     $unit = Unit::create([
         'name' => 'some unit',
+        'attribute_id'=>1
 
     ]);
 
     $this->assertDatabaseHas('units', [
         'name' => 'some unit',
+//        'unit_id'=>1,
+
     ]);
 
     $unit->delete();
@@ -86,7 +89,8 @@ it('check created Product model existence & softDeleting', function () {
     $product = Product::create([
         'name' => 'some product',
         'slug' =>"sp",
-        'category_id'=>1
+        'category_id'=>1,
+        'vendor_id'=>1
     ]);
 
     $this->assertDatabaseHas('products', [
@@ -114,19 +118,19 @@ it('check created Sku model existence & softDeleting', function () {
 
     $sku = Sku::create([
         'cost'=>123.12,
-        'name' => 'some sku',
+        'number_in_stock'=>33,
+//        'name' => 'some sku',
         'skucode'=>'nan-hfh-nn',
         'barcode'=>'111111111',
         'price'=>123.22,
-        'quantity_in_stock'=>123,
+//        'quantity_in_stock'=>123,
         'location_in_stock'=>'ff-123',
         'product_id'=>1,
         'stock_id'=>1,
-        'vendor_id'=>1
     ]);
 
     assertDatabaseHas('skus', [
-        'name' => 'some sku',
+        'location_in_stock'=>'ff-123'
     ]);
     $sku->delete();
     assertSoftDeleted($sku);
@@ -153,7 +157,7 @@ it('check created AttributeOption model existence & softDeleting', function () {
             'name'=>'zigmund',
             'comment'=>'some comment',
             'attribute_id'=>1,
-            'unit_id'=>1,
+
         ]
     );
 

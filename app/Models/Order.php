@@ -13,7 +13,7 @@ class Order extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable=[
+    protected $fillable = [
         'order_number',
         'status',
     ];
@@ -21,16 +21,16 @@ class Order extends Model
 
     protected function casts()
     {
-        return['status'=>OrderStatus::class];
-}
+        return ['status' => OrderStatus::class];
+    }
 
-    public function skus():BelongsToMany
+    public function skus(): BelongsToMany
     {
         return $this->belongsToMany(Sku::class)
             ->withPivot('number_in_order');
     }
 
-    public function users():BelongsToMany
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }

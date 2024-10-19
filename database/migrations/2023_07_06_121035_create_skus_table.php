@@ -37,7 +37,7 @@ return new class extends Migration {
             $table->string('location_in_stock')
                 ->unique();
 
-
+//related tables
             $table->foreignIdFor(Product::class)
                 ->constrained();
 

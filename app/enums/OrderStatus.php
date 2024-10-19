@@ -4,7 +4,7 @@ namespace App\enums;
 
 enum OrderStatus: string
 {
-    case Paid = 'paid';// mark as deleted  from stock main
+    case Paid = 'paid';// as marked  'deleted'  by stock main
 
     case Pending = 'pending';//stock main, not assigned to the menager
 
